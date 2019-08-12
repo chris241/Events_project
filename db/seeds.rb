@@ -6,6 +6,37 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create(email:"paulmouchel@yopmail.com", description:"Salut, moi c'est Paul, je fais THP", first_name:"Paul", last_name:"Mouchel")
-User.create(email:"pierre.michel@yopmail.com", description:"Salut, moi c'est Pierre, je fais THP", first_name:"Pierre", last_name:"Michel")
+User.destroy_all
+Event.destroy_all
+Attendance.destroy_all
+
+#Création de users
+5.times do
+	email = "pierre.michel@yopmail.com"
+	description = Faker::TvShows::Community.quotes
+	first_name = Faker::Name.first_name
+	last_name = Faker::Name.last_name
+	User.create(email:email, description:description, first_name:first_name, last_name:last_name)
+end
+
+#Créations d'events
+3.times do
+	start_date = Faker::Time.forward(days: 60)
+	duration = rand(9)*60 + rand(12)*5
+	title = Faker::Music::RockBand.name
+	description = Faker::Movies::StarWars.quote
+	price = rand(1..1000)
+	location = Faker::Address.full_address
+	admin = User.all.sample
+	Event.create(start_date:start_date, duration:duration, title:title, description:description, price:price, location:location, admin:admin)
+end
+
+# Création d'attendances
+	5.times do
+    stripe_customer_id = ""
+    participant = User.all.sample
+    event = Event.all.sample
+  	Attendance.create(stripe_customer_id: stripe_customer_id, participant: participant, event: event)
+end
+
 
