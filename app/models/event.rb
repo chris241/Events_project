@@ -35,3 +35,6 @@ def in_the_future?
       errors.add(:start_date, "can't be in the past")
   end
 end
+
+
+
