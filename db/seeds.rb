@@ -24,7 +24,13 @@ end
 	start_date = Faker::Time.forward(days: 60)
 	duration = rand(9)*60 + rand(12)*5
 	title = Faker::Music::RockBand.name
+	while title.length <= 5
+		title += " " + Faker::Music::RockBand.name
+	end
 	description = Faker::Movies::StarWars.quote
+	while description.length <= 20
+		description += " " + Faker::Movies::StarWars.quote
+	end
 	price = rand(1..1000)
 	location = Faker::Address.full_address
 	admin = User.all.sample
