@@ -1,11 +1,11 @@
 class Event < ApplicationRecord
 	validates :start_date, 
 		presence: true
-	validates :in_the_future?
+	validate :in_the_future?
   validates :duration,
     presence: true,
     numericality: { only_integer: true, greater_than: 0}
-  validates :multiple_of_5?
+  validate :multiple_of_5?
   validates :title, 
   	presence: true, 
   	length: { in: 5..140 }
