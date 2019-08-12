@@ -17,15 +17,14 @@
     max-width: 100%;
 }
 
-.card
+.event-card
 {
-	width: 15rem; 
+	width: 100%; 
 	min-height: 300px;
-	/*display: inline-block;*/
 }
 
 
-.card:hover {
+.event-card:hover {
   box-shadow: 0 0 30px
 }
 
@@ -33,3 +32,21 @@
 {
 	margin: 2em 5em 2em 5em;
 }
+
+.price
+{
+	position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: rgb(41,135,255);
+    color : white;
+    height: 3em;
+    width: 3em;
+    border-radius: 50%;
+    border:  1px solid rgb(223,223,223);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

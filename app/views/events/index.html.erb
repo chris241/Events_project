@@ -3,8 +3,8 @@
 <div class="jumbotron" style="background-image: url(https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?cs=srgb&dl=audience-band-concert-1105666.jpg&fm=jpg); background-size: 100%;">
 
   <div class="container">
-    <h1 class="display-3">Hello, world!</h1>
-    <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+    <h1 class="display-3" style="color: white;">Vivez le meilleur!</h1>
+    <p style="color: white;">Ne ratez plus un évenement près de chez vous.</p>
   </div>
 </div>
 
@@ -13,12 +13,14 @@
     <% Event.all.each do |event| %>
       <div class="col-sm-6 col-md-4 col-lg-3">
         <%= link_to(event_path(event)) do %>
-          <div class="card">     
+          <div class="card event-card">     
             <div class="card-body">
               <h5 class="card-title"><%= event.title %></h5>
               <p class="card-text"><%= event.description %></p>
               <p class="card-text"><%= event.start_date %></p>
-              <p class="card-text"><%= event.price %>€</p>
+              <aside class="price">
+                <p class="card-text"><strong><%= event.price %>€</strong></p>
+              </aside>
               <p class="card-text"><%= event.location %></p>
             </div>
           </div>
@@ -29,38 +31,4 @@
 
 </section>
 
-<h1>Events</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Start date</th>
-      <th>Duration</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Location</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.start_date %></td>
-        <td><%= event.duration %></td>
-        <td><%= event.title %></td>
-        <td><%= event.description %></td>
-        <td><%= event.price %></td>
-        <td><%= event.location %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Event', new_event_path %>

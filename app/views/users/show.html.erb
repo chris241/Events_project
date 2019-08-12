@@ -1,29 +1,57 @@
-<p id="notice"><%= notice %></p>
+<br>
+<section class="card-events">
+  <h2>Mes infos</h2>
+  <div class="row">
+    <div class="col">
+    <p>
+      <strong>Email:</strong>
+      <%= @user.email %>
+    </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+    <p>
+      <strong>Description:</strong>
+      <%= @user.description %>
+    </p>
 
-<p>
-  <strong>Encrypted password:</strong>
-  <%= @user.encrypted_password %>
-</p>
+    <p>
+      <strong>First name:</strong>
+      <%= @user.first_name %>
+    </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @user.description %>
-</p>
+    <p>
+      <strong>Last name:</strong>
+      <%= @user.last_name %>
+    </p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
+    <%= link_to 'Edit', edit_user_path(@user) %> |
 
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
+  </div>
+  </div>
+</section>
+<br>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+
+
+<section class="card-events">
+  <h2>Mes évenements</h2>
+  <div class="row">
+    <% @user.organized_events.each do |event| %>
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <%= link_to(event_path(event)) do %>
+          <div class="card event-card">     
+            <div class="card-body">
+              <h5 class="card-title"><%= event.title %></h5>
+              <p class="card-text"><%= event.description %></p>
+              <p class="card-text"><%= event.start_date %></p>
+              <aside class="price">
+                <p class="card-text"><strong><%= event.price %>€</strong></p>
+              </aside>
+              <p class="card-text"><%= event.location %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
 

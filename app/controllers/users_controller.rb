@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:show]
+  before_action :redirect_to_root, if: :not_current_user_profile?, only: [:show]
+
+
   #after_create :send_email
 
   # GET /users
@@ -71,5 +75,14 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:email, :encrypted_password, :description, :first_name, :last_name)
+    end
+
+    def not_current_user_profile?
+      return params[:id].to_i != current_user.id
+    end
+
+    def redirect_to_root
+      puts "$"*1000
+      redirect_to events_path
     end
 end
