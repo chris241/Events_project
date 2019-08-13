@@ -20,21 +20,26 @@ class Event < ApplicationRecord
 	belongs_to :admin, class_name: "User"
 	has_many :attendances
   has_many :participants, through: :attendances
-end
 
-def multiple_of_5?
-	#return self.duration % 5 == 0
-	if self.duration.present? && self.duration % 5 != 0
-      errors.add(:duration, "must be multiple of 5")
+  def end_date
+    return self.start_date + self.duration*60
+  end
+
+  private
+
+  def multiple_of_5?
+  	#return self.duration % 5 == 0
+  	if self.duration.present? && self.duration % 5 != 0
+        errors.add(:duration, "must be multiple of 5")
+    end
+  end
+
+  def in_the_future?
+  	#return self.start_date > Time.now
+  	if self.start_date.present? && self.start_date < Time.now
+        errors.add(:start_date, "can't be in the past")
+    end
   end
 end
-
-def in_the_future?
-	#return self.start_date > Time.now
-	if self.start_date.present? && self.start_date < Time.now
-      errors.add(:start_date, "can't be in the past")
-  end
-end
-
 
 
