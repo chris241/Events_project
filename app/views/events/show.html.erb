@@ -13,7 +13,7 @@
             <p>Créé par <em><%= @event.admin.name %></em> <%= @event.admin.email %> </p>
             <p><%= @event.participants.count %> personnes participent à cet évenement </p>
             <p>
-              début : <%= @event.start_date %>
+              début : <%= @event.convert_start_date %>
             </p>
             <p>
               fin : <%= @event.end_date %>
@@ -26,7 +26,7 @@
             </aside>
             
 
-            <div class="container">
+            <div class="container bg-light border border-info rounded">
               <p><strong>Description:</strong></p>
               <p><%= @event.description %></p>
             </div>

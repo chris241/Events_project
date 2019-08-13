@@ -22,7 +22,8 @@ class Event < ApplicationRecord
   has_many :participants, through: :attendances
 
   def end_date
-    return self.start_date + self.duration*60
+    date = self.start_date + self.duration*60
+    return date.strftime("%d/%m/%y à %H:%M")
   end
 
   def get_month
@@ -36,6 +37,10 @@ class Event < ApplicationRecord
     else
       return self.description[0..80] + "..."
     end
+  end
+
+  def convert_start_date
+    return self.start_date.strftime("%d/%m/%y à %H:%M")
   end
 
   private
