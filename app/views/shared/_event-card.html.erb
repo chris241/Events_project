@@ -2,13 +2,18 @@
     <%= link_to(event_path(event)) do %>
         <div class="card event-card">     
             <div class="card-body">
+                <br>
               	<h5 class="card-title"><%= event.title %></h5>
-              	<p class="card-text"><%= event.description %></p>
-              	<p class="card-text"><%= event.start_date %></p>
+              	<p class="card-text"><%= event.short_description %></p>
+              	<p class="card-text">Le : <%= event.start_date %></p>
               	<aside class="price">
                 	<p class="card-text"><strong><%= event.price %>€</strong></p>
               	</aside>
-            	<p class="card-text"><%= event.location %></p>
+                <aside class="date">
+                  <p class="month"><strong><%= event.get_month %></strong></p>
+                  <p class="day_of_month"><%= event.start_date.day %></p>
+                </aside>
+            	<p class="card-text"><i class="fas fa-map-marker-alt"></i> <%= event.location %></p>
         	</div>
     	</div>
 	<% end %>

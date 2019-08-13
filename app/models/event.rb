@@ -25,6 +25,19 @@ class Event < ApplicationRecord
     return self.start_date + self.duration*60
   end
 
+  def get_month
+    month = ["", "JANV.", "FEV.", "MARS", "AVR.", "MAI", "JUIN", "JUIL.", "AOUT", "SEPT.", "OCT.", "NOV.", "DEC."]
+    return month[self.start_date.month]
+  end
+
+  def short_description
+    if self.description.length < 80
+      return self.description
+    else
+      return self.description[0..80] + "..."
+    end
+  end
+
   private
 
   def multiple_of_5?

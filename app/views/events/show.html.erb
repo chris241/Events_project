@@ -20,7 +20,10 @@
             </p>
 
             <p class="price"><%= @event.price %>€</p>
-
+            <aside class="date">
+                  <p class="month"><strong><%= @event.get_month %></strong></p>
+                  <p class="day_of_month"><%= @event.start_date.day %></p>
+            </aside>
             
 
             <div class="container">

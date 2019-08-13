@@ -1,24 +1,35 @@
-# README
+# ___THE EVENTS PROJECT___ 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Bievenue dans notre project du Events Project 
+>Created by Julien TEXIER & Paul MOUCHEL, à *Rennes*
+>
 
-Things you may want to cover:
+</br>
 
-* Ruby version
+________________________________________________________
+</br>
 
-* System dependencies
+# ___Comment ça marche___ :robot:
 
-* Configuration
+Pour démarrer l'application, lancez les commandes suivantes :
+```
+bundle install
+rails db:create
+rails db:migrate
+rails db:seed
+rails server
+```
 
-* Database creation
+Puis rendez-vous sur votre navigateur pour acceder au site (http://localhost:3000)
 
-* Database initialization
+Pour vous logger, vous pouvez utiliser l'utilisateur Pierre Michel avec les identifiants suivants:
+Email : pierre.michel@yopmail.com
+Password: azerty
 
-* How to run the test suite
+Ou créer votre propre compte !
 
-* Services (job queues, cache servers, search engines, etc.)
+Vous pouvez aussi consulter la version en ligne à l'adresse :
+https://the-events-project.herokuapp.com/
 
-* Deployment instructions
+ENJOY !
 
-* ...

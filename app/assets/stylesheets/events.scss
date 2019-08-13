@@ -20,8 +20,8 @@
 	width: 100%; 
 	min-height: 300px;
     margin-bottom: 2em;
+    color: black;
 }
-
 
 .event-card:hover {
     box-shadow: 0 0 30px;
@@ -50,6 +50,41 @@
     align-items: center;
 }
 
+.date
+{
+    text-align: center;
+    position: absolute;
+    top: 0px;
+    right: 50px;
+    /*background-color: rgb(255,155,55);*/
+    height: 3.5em;
+    width: 3.5em;
+    border-radius: 20%;
+    /*border:  1px solid black;*/
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em;
+}
+
+.month
+{
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    right: 0px;
+    color: orange;
+}
+.day_of_month
+{
+    position: absolute;
+    width: 100%;
+    top: 20px;
+    right: 00px;
+}
+
+
 .frame
 {
     width: 100%; 
@@ -60,5 +95,9 @@
       -ms-filter: blur(0px);
 }
 
+.fa-map-marker-alt
+{
+    color: orange;
+}
 
 
