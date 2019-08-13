@@ -9,7 +9,7 @@
               <strong><%= @event.title %></strong>
             </h5>
 
-            <p><i class="fas fa-map-marker-alt"></i>  <%= @event.location %></p>
+            <p><i class="fas fa-map-marker-alt text-warning"></i>  <%= @event.location %></p>
             <p>Créé par <em><%= @event.admin.name %></em> <%= @event.admin.email %> </p>
             <p><%= @event.participants.count %> personnes participent à cet évenement </p>
             <p>
@@ -19,10 +19,10 @@
               fin : <%= @event.end_date %>
             </p>
 
-            <p class="price"><%= @event.price %>€</p>
-            <aside class="date">
-                  <p class="month"><strong><%= @event.get_month %></strong></p>
-                  <p class="day_of_month"><%= @event.start_date.day %></p>
+            <p class="price rounded-circle position-absolute border border-info text-light"><strong><%= @event.price %>€</strong></p>
+            <aside class="date position-absolute">
+                  <p class="month text-warning position-absolute w-100"><strong><%= @event.get_month %></strong></p>
+                  <p class="day_of_month position-absolute w-100"><%= @event.start_date.day %></p>
             </aside>
             
 
