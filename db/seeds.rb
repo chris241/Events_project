@@ -22,7 +22,7 @@ User.create(email:email, description:description, first_name:first_name, last_na
 end
 
 #Créations d'events
-20.times do
+15.times do
 	start_date = Faker::Time.forward(days: 60)
 	duration = rand(9)*60 + rand(12)*5
 	title = Faker::Music::RockBand.name
@@ -40,7 +40,7 @@ end
 end
 
 # Création d'attendances
-	50.times do
+	20.times do
     stripe_customer_id = ""
     participant = User.all.sample
     event = Event.all.sample
