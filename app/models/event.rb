@@ -18,7 +18,7 @@ class Event < ApplicationRecord
   validates :location, presence: true
 
 	belongs_to :admin, class_name: "User"
-	has_many :attendances
+	has_many :attendances, dependent: :destroy
   has_many :participants, through: :attendances
 
   def end_date

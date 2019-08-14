@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :redirect_to_root, if: :not_admin?, only: [:edit, :update, :destroy]
 
   # GET /events
   # GET /events.json
@@ -71,5 +72,13 @@ class EventsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
       params.require(:event).permit(:start_date, :duration, :title, :description, :price, :location)
+    end
+
+    def not_admin?
+      return @event.admin != current_user
+    end
+
+    def redirect_to_root
+      redirect_to events_path
     end
 end

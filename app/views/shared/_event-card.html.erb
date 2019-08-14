@@ -2,7 +2,7 @@
     <div class="card event-card w-100">     
         <div class="card-body">
             <br>
-          	<h5 class="card-title"><%= event.title %><% if event.participate?(current_user) %> <span class="badge badge-secondary bg-success">Je participe !</span><% end %></h5>
+          	<h5 class="card-title"><%= event.title %><% if event.participate?(current_user) %> <span class="badge badge-secondary bg-success">Je participe !</span><% end %><% if event.admin == current_user %> <span class="badge badge-secondary bg-danger">Admin</span><% end %></h5>
           	<p class="card-text"><%= event.short_description %></p>
           	<p class="card-text">Le : <%= event.convert_start_date %></p>
           	<aside class="price rounded-circle position-absolute border border-info text-light">

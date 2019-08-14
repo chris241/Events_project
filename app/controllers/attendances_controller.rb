@@ -1,5 +1,9 @@
 class AttendancesController < ApplicationController
 	before_action :set_event
+	before_action :redirect_to_root, if: :not_admin?, only: [:index]
+
+	def index
+	end
 
 	def new
   end
@@ -40,5 +44,13 @@ class AttendancesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:event_id])
+    end
+
+    def not_admin?
+      return @event.admin != current_user
+    end
+
+    def redirect_to_root
+      redirect_to events_path
     end
 end

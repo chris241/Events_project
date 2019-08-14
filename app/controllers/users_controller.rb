@@ -82,7 +82,6 @@ class UsersController < ApplicationController
     end
 
     def redirect_to_root
-      puts "$"*1000
       redirect_to events_path
     end
 end
