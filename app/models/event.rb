@@ -43,6 +43,14 @@ class Event < ApplicationRecord
     return self.start_date.strftime("%d/%m/%y à %H:%M")
   end
 
+  def can_participate?(user)
+    return !(user == nil || user == self.admin || self.participants.include?(user))
+  end
+
+  def participate?(user)
+    return self.participants.include?(user)
+  end
+
   private
 
   def multiple_of_5?

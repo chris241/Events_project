@@ -6,7 +6,7 @@
         <section class="card frame">
           <div class="card-body">
             <h5 class="card-title">
-              <strong><%= @event.title %></strong>
+              <strong><%= @event.title %><% if @event.participate?(current_user) %> <span class="badge badge-secondary bg-success">Je participe !</span><% end %></strong>
             </h5>
 
             <p><i class="fas fa-map-marker-alt text-warning"></i>  <%= @event.location %></p>
@@ -30,6 +30,11 @@
               <p><strong>Description:</strong></p>
               <p><%= @event.description %></p>
             </div>
+            <% if @event.can_participate?(current_user) %>
+              <p><%= link_to 'Je participe !', new_event_attendance_path(@event), class:"btn btn-success float-right mt-1" %></p>
+            <% end %>
+
+
             <%= link_to 'Edit', edit_event_path(@event) %> |
             <%= link_to 'Back', events_path %>
 
