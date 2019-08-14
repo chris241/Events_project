@@ -28,6 +28,7 @@ gem 'table_print'
 gem 'faker'
 gem "font-awesome-rails"
 gem 'devise'
+gem 'stripe'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
