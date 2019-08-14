@@ -12,19 +12,23 @@ class AttendancesController < ApplicationController
 	  # Amount in cents
 	  @amount = @event.price * 100
 
-	  customer = Stripe::Customer.create({
-	    email: params[:stripeEmail],
-	    source: params[:stripeToken],
-	  })
+	  if !@event.is_free?
+		  customer = Stripe::Customer.create({
+		    email: params[:stripeEmail],
+		    source: params[:stripeToken],
+		  })
 
-	  charge = Stripe::Charge.create({
-	    customer: customer.id,
-	    amount: @amount,
-	    description: 'Rails Stripe customer',
-	    currency: 'eur',
-	  })
-
-		@attendance = Attendance.new(stripe_customer_id: charge.customer, participant: current_user, event: @event)
+		  charge = Stripe::Charge.create({
+		    customer: customer.id,
+		    amount: @amount,
+		    description: 'Rails Stripe customer',
+		    currency: 'eur',
+		  })
+		  stripe_customer_id = charge.customer
+		else
+			stripe_customer_id = ""
+	 	end
+		@attendance = Attendance.new(stripe_customer_id: stripe_customer_id, participant: current_user, event: @event)
     if @attendance.save
 			flash[:success] = "Votre participation à bien été prise en compte !"
 			#redirect_to gossips_path

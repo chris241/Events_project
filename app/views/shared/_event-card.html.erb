@@ -5,8 +5,8 @@
           	<h5 class="card-title"><%= event.title %><% if event.participate?(current_user) %> <span class="badge badge-secondary bg-success">Je participe !</span><% end %><% if event.admin == current_user %> <span class="badge badge-secondary bg-danger">Admin</span><% end %></h5>
           	<p class="card-text"><%= event.short_description %></p>
           	<p class="card-text">Le : <%= event.convert_start_date %></p>
-          	<aside class="price rounded-circle position-absolute border border-info text-light">
-            	<p class="card-text"><strong><%= event.price %>€</strong></p>
+          	<aside class="price rounded-circle position-absolute border border-info text-light <% if event.is_free? %>bg-success<% else %>bg-info<% end %>">
+            	<p class="card-text"><strong><% if event.is_free? %>FREE<% else %><%= event.price %>€<% end %></strong></p>
           	</aside>
             <aside class="date position-absolute">
               <p class="month text-warning position-absolute w-100"><strong><%= event.get_month %></strong></p>

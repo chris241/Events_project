@@ -14,7 +14,7 @@ class Event < ApplicationRecord
   	length: { in: 20..1000 }
   validates :price, 
   	presence: true,
-  	numericality: { only_integer: true,  in: 1..1000}
+  	numericality: { only_integer: true,  in: 0..1000}
   validates :location, presence: true
 
 	belongs_to :admin, class_name: "User"
@@ -49,6 +49,10 @@ class Event < ApplicationRecord
 
   def participate?(user)
     return self.participants.include?(user)
+  end
+
+  def is_free?
+    return self.price == 0
   end
 
   private

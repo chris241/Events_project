@@ -21,7 +21,10 @@
               fin : <%= @event.end_date %>
             </p>
 
-            <p class="price rounded-circle position-absolute border border-info text-light"><strong><%= @event.price %>€</strong></p>
+            <aside class="price rounded-circle position-absolute border border-info text-light <% if @event.is_free? %>bg-success<% else %>bg-info<% end %>">
+              <p class="card-text"><strong><% if @event.is_free? %>FREE<% else %><%= @event.price %>€<% end %></strong></p>
+            </aside>
+
             <aside class="date position-absolute">
                   <p class="month text-warning position-absolute w-100"><strong><%= @event.get_month %></strong></p>
                   <p class="day_of_month position-absolute w-100"><%= @event.start_date.day %></p>
@@ -32,8 +35,11 @@
               <p><strong>Description:</strong></p>
               <p><%= @event.description %></p>
             </div>
-            <% if @event.can_participate?(current_user) %>
+            <% if @event.can_participate?(current_user) &&  !@event.is_free?%>
               <p><%= link_to 'Je participe !', new_event_attendance_path(@event), class:"btn btn-success float-right mt-1" %></p>
+            <% end %>
+            <% if @event.can_participate?(current_user) &&  @event.is_free?%>
+              <p><%= link_to 'Je participe !', event_attendances_path(@event), method: :post, class:"btn btn-success float-right mt-1" %></p>
             <% end %>
             <% if @event.admin == current_user %>
               <p><%= link_to 'mon espace événement', event_attendances_path(@event), class:"btn btn-primary float-right mt-1" %></p>
