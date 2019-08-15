@@ -1,4 +1,19 @@
 <aside class="date position-absolute">
-    <p class="month text-warning position-absolute w-100"><strong><%= event.get_month %></strong></p>
-    <p class="day_of_month position-absolute w-100"><%= event.start_date.day %></p>
+    <p class="text-warning position-absolute w-100", style="top: 0px; right: 0px;"><strong><%= event.get_month %></strong></p>
+    <p class="position-absolute w-100", style="top: 20px; right: 00px;"><%= event.start_date.day %></p>
 </aside>
+
+<style>
+	.date
+	{
+	    text-align: center;
+	    top: 0px;
+	    right: 50px;
+	    height: 3.5em;
+	    width: 3.5em;
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    font-size: 0.8em;
+	}
+</style>

@@ -41,7 +41,7 @@
           <li class="nav-item dropdown">
             <% if !user_signed_in? %>
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                S'inscrire / Se connecter <%= current_user %>
+                S'inscrire / Se connecter
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <%= link_to "S'inscrire", new_user_registration_path, class: "dropdown-item" %>

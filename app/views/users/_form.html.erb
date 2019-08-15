@@ -17,15 +17,15 @@
         <% end %>
         <div class="form-group">
           <%= f.label :description, "Description" %><br />
-          <%= f.text_area :description, autofocus: true, autocomplete: "description", class: "form-control" %>
+          <%= f.text_area :description, autofocus: true, class: "form-control" %>
         </div>
         <div class="form-group">
           <%= f.label :first_name %>
-          <%= f.text_field :first_name, autocomplete: "Prenom", class: "form-control" %>
+          <%= f.text_field :first_name, class: "form-control" %>
         </div>
         <div class="form-group">
           <%= f.label :last_name %>
-          <%= f.text_field :last_name, autocomplete: "Nom", class: "form-control" %>
+          <%= f.text_field :last_name, class: "form-control" %>
         </div>
         <div class="actions mt-5">
           <%= f.submit "Mettre à jour", class: "btn btn-lg btn-primary btn-block" %>
@@ -33,13 +33,14 @@
         <br>
         <%= link_to 'Annuler', @user %>
       <% end %>
+      <br>
+      <h3>Changer d'avatar ?</h3>
+        <%= form_tag user_user_pics_path(@user), multipart: true do %>
+        <%= file_field_tag :user_pic %>
+        <%= submit_tag "mettre à jour" %>
+      <% end %>
     </div>
   </div>
 </div>
 
 
-<h3>Changer d'avatar ?</h3>
-<%= form_tag user_user_pics_path(@user), multipart: true do %>
-  <%= file_field_tag :user_pic %>
-  <%= submit_tag "mettre à jour" %>
-<% end %>

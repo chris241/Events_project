@@ -24,7 +24,7 @@ end
 #Créations d'events
 15.times do
 	start_date = Faker::Time.forward(days: 60)
-	duration = rand(9)*60 + rand(12)*5
+	duration = rand(9)*60 + rand(12)*5 + 5
 	title = Faker::Music::RockBand.name
 	while title.length <= 5
 		title += " " + Faker::Music::RockBand.name
