@@ -1,0 +1,3 @@
+<aside class="price rounded-circle position-absolute border border-info text-light <% if event.is_free? %>bg-success<% else %>bg-info<% end %>">
+    <p class="card-text"><strong><% if event.is_free? %>Free<% else %><%= event.price %>€<% end %></strong></p>
+</aside>

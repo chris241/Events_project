@@ -48,9 +48,26 @@
         </div>
 
         <div class="form-group">
-          <%= f.file_field :event_pic, autocomplete: :event_pic, required: true %><br />
+          <%= f.file_field :event_pic, autocomplete: :event_pic %><br />
         </div>
-        
+        <div class="form-group">
+          <div class="file-field">
+              <div class="z-depth-1-half mb-4">
+                <%if event.event_pic.attached?%>
+                  <%= image_tag event.event_pic, alt: 'event_pic', class:"img-fluid w-100 ", style:"height: 15vw; object-fit: cover;" %>
+                <% else %>
+                  <img src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg" class="img-fluid w-100"
+                    alt="image event", style="height: 15vw; object-fit: cover;">
+                <% end %>
+              </div>
+              <div class="d-flex justify-content-center">
+                <div class="btn btn-mdb-color btn-rounded float-left">
+                  <span>Choose file</span>
+                  <input type="file">
+                </div>
+              </div>
+            </div>
+        </div>
         <div class="actions mt-5">
           <%= f.submit "Créer", class: "btn btn-lg btn-primary btn-block" %>
         </div>
@@ -60,6 +77,5 @@
     </div>
   </div>
 </div>
-
 
 

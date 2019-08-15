@@ -1,19 +1,19 @@
 <div class="col-sm-6 col-md-4 col-lg-3">
-    <div class="card event-card w-100">     
-        <div class="card-body">
-            <br>
-          	<h5 class="card-title"><%= event.title %><% if event.participate?(current_user) %> <span class="badge badge-secondary bg-success">Je participe !</span><% end %><% if event.admin == current_user %> <span class="badge badge-secondary bg-danger">Admin</span><% end %></h5>
-          	<p class="card-text"><%= event.short_description %></p>
-          	<p class="card-text">Le : <%= event.convert_start_date %></p>
-          	<aside class="price rounded-circle position-absolute border border-info text-light <% if event.is_free? %>bg-success<% else %>bg-info<% end %>">
-            	<p class="card-text"><strong><% if event.is_free? %>FREE<% else %><%= event.price %>€<% end %></strong></p>
-          	</aside>
-            <aside class="date position-absolute">
-              <p class="month text-warning position-absolute w-100"><strong><%= event.get_month %></strong></p>
-              <p class="day_of_month position-absolute w-100"><%= event.start_date.day %></p>
-            </aside>
-        	<p class="card-text"><i class="fas fa-map-marker-alt text-warning"></i> <%= event.location %></p>
-          <%= link_to "", event_path(event), class:"stretched-link" %>
-    	</div>
+    <div class="card event-card w-100"> 
+      <%if event.event_pic.attached?%>
+        <%= image_tag event.event_pic, alt: 'event_pic', class:"card-img-top w-100", style:"height: 15vw; object-fit: cover;" %>
+      <% else %>
+      <br>
+      <%end%>
+      <div class="card-body">
+          
+        	<h5 class="card-title"><%= event.title %><% if event.participate?(current_user) %> <span class="badge badge-secondary bg-success">Je participe !</span><% end %><% if event.admin == current_user %> <span class="badge badge-secondary bg-danger">Admin</span><% end %></h5>
+        	<p class="card-text"><%= event.short_description %></p>
+        	<p class="card-text">Le : <%= event.convert_start_date %></p>
+          <%= render 'shared/price', event: event %>
+          <%= render 'shared/date', event: event %>
+      	<p class="card-text"><i class="fas fa-map-marker-alt text-warning"></i> <%= event.location %></p>
+        <%= link_to "", event_path(event), class:"stretched-link" %>
+  	</div>
 	</div>
 </div>
