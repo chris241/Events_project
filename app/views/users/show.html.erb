@@ -5,7 +5,7 @@
     <div class="col">
 
     <%if @user.user_pic.attached?%>
-              <%= image_tag @user.user_pic.variant(resize: "200x200"), alt: 'event_pic', class:"w-25 rounded-circle z-depth-1-halfavatar-pic" %>
+              <%= image_tag @user.user_pic.variant(resize: "350x350"), alt: 'event_pic', class:"w-25 z-depth-1-halfavatar-pic" %>
     <%end%>
 
     <p>
@@ -42,7 +42,7 @@
 <section class="card-events">
   <h2>Mes évenements</h2>
   <div class="row">
-    <% @user.organized_events.each do |event| %>
+    <% @user.organized_events.sort_by{ |event| event.start_date }.each do |event| %>
       <%= render 'shared/event-card', event: event %>
     <% end %>
   </div>
@@ -50,7 +50,7 @@
 <section class="card-events">
   <h2>Mes participations</h2>
   <div class="row">
-    <% @user.events.each do |event| %>
+    <% @user.events.sort_by{ |event| event.start_date }.each do |event| %>
       <%= render 'shared/event-card', event: event %>
     <% end %>
   </div>
