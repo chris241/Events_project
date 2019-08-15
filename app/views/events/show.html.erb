@@ -5,33 +5,9 @@
       <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
         <section class="card frame">
           <div class="card-body">
-            <h5 class="card-title">
-              <strong><%= @event.title %><% if @event.participate?(current_user) %> <span class="badge badge-secondary bg-success">Je participe !</span><% end %>
-                <% if @event.admin == current_user %> <span class="badge badge-secondary bg-danger">Admin</span><% end %>
-              </strong>
-            </h5>
 
-            <%if @event.event_pic.attached?%>
-              <%= image_tag @event.event_pic, alt: 'event_pic', class:"w-100", style:"height: 30vw; object-fit: cover;" %>
-            <%end%>
+            <%= render 'shared/event_detailled', event: @event %>
 
-            <p><i class="fas fa-map-marker-alt text-warning"></i>  <%= @event.location %></p>
-            <p>Créé par <em><%= @event.admin.name %></em> <%= @event.admin.email %> </p>
-            <p><%= @event.participants.count %> personnes participent à cet évenement </p>
-            <p>
-              début : <%= @event.convert_start_date %>
-            </p>
-            <p>
-              fin : <%= @event.end_date %>
-            </p>
-
-            <%= render 'shared/price', event: @event %>
-            <%= render 'shared/date', event: @event %>
-
-            <div class="container bg-light border border-info rounded">
-              <p><strong>Description:</strong></p>
-              <p><%= @event.description %></p>
-            </div>
             <% if @event.can_participate?(current_user) &&  !@event.is_free?%>
               <p><%= link_to 'Je participe !', new_event_attendance_path(@event), class:"btn btn-success float-right mt-1" %></p>
             <% end %>

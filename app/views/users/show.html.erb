@@ -5,7 +5,7 @@
     <div class="col">
 
     <%if @user.user_pic.attached?%>
-              <%= image_tag @user.user_pic, alt: 'event_pic', class:"w-25 rounded-circle z-depth-1-halfavatar-pic" %>
+              <%= image_tag @user.user_pic.variant(resize: "200x200"), alt: 'event_pic', class:"w-25 rounded-circle z-depth-1-halfavatar-pic" %>
     <%end%>
 
     <p>
