@@ -36,3 +36,10 @@
     </div>
   </div>
 </div>
+
+
+<h3>Changer d'avatar ?</h3>
+<%= form_tag user_user_pics_path(@user), multipart: true do %>
+  <%= file_field_tag :user_pic %>
+  <%= submit_tag "mettre à jour" %>
+<% end %>

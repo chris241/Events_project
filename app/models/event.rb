@@ -16,10 +16,13 @@ class Event < ApplicationRecord
   	presence: true,
   	numericality: { only_integer: true,  in: 0..1000}
   validates :location, presence: true
+  validates :event_pic,
+    presence: true
 
 	belongs_to :admin, class_name: "User"
 	has_many :attendances, dependent: :destroy
   has_many :participants, through: :attendances
+  has_one_attached :event_pic
 
   def end_date
     date = self.start_date + self.duration*60

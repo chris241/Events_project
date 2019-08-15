@@ -34,7 +34,13 @@
 </section>
 <br>
 
-
+<p>Bienvenue sur la page d'ajout d'un avatar pour le User portant l'id : <%=@user.id%></p>
+<h3>Avatar actuel</h3>
+<%if @user.user_pic.attached?%>
+  <%= image_tag @user.user_pic, alt: 'user_pic' %>
+<%else%>
+  <p>=== Il n'y a pas encore d'user_pic lié à cet utilisateur ===</p>
+<%end%>
 
 <section class="card-events">
   <h2>Mes évenements</h2>
@@ -43,5 +49,6 @@
       <%= render 'shared/event-card', event: event %>
     <% end %>
   </div>
+</section>
 
 
