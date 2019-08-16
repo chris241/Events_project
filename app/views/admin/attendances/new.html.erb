@@ -1,0 +1,57 @@
+<br><br>
+<div class="container border bg-white rounded">
+  	<div class="row">
+
+   		<div class="col text-center">
+   			<h1 class="h3 mb-3 font-weight-normal text-center">Participer à l'évenement : <br><strong><%= @event.title %></strong></h1>
+   			<p>Créé par <em><%= @event.admin.name %></em> <%= @event.admin.email %> </p>
+   			<p>début : <%= @event.convert_start_date %></p>
+            <p>fin : <%= @event.end_date %></p>
+            <p><i class="fas fa-map-marker-alt text-warning"></i>  <%= @event.location %></p>
+
+		    <label class="amount">
+		      	<span>Prix à payer: <strong><%= @event.price %>€</strong></span>
+		    </label>
+
+			
+			<table class="table">
+			  <thead>
+			    <tr class="table-info">
+			      <th>id</th>
+			      <th>Email</th>
+			      <th>Description</th>
+			      <th>First name</th>
+			      <th>Last name</th>
+			      <th>Admin?</th>
+			      <th colspan="1"></th>
+			    </tr>
+			  </thead>
+
+			  <tbody>
+			    <% @users.sort_by{ |user| user.email }.each do |user| %>
+			   		<% if !user.events.include?(@event) %>
+			      <tr>
+			        <td><%= user.id %></td>
+			        <td><%= user.email %></td>
+			        <td><%= user.description %></td>
+			        <td><%= user.first_name %></td>
+			        <td><%= user.last_name %></td>
+			        <td><span class="bg-<% if user.is_admin %>success<% else %>danger<% end %> rounded-circle", style="height: 20px; width: 20px; display: inline-block;"></span></td>
+			        <td><%= link_to 'participe', admin_event_attendances_path(@event),  method: :post, class:"btn btn-success" %></td>
+
+
+			        
+
+
+			      	</tr>
+			      <% end %>
+			    <% end %>
+			  </tbody>
+			</table>
+
+		
+    	</div>
+  	</div>
+</div>
+
+
