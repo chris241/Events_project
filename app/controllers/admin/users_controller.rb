@@ -1,7 +1,8 @@
-class UsersController < ApplicationController
+class Admin::UsersController < ApplicationController
+	before_action :authenticate_user!
+	before_action :check_if_admin
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
-  before_action :redirect_to_root, if: :not_current_user_profile?
+
 
 
   #after_create :send_email
@@ -61,7 +62,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to admin_users_path, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -77,11 +78,11 @@ class UsersController < ApplicationController
       params.require(:user).permit(:email, :encrypted_password, :description, :first_name, :last_name)
     end
 
-    def not_current_user_profile?
-      return params[:id].to_i != current_user.id
-    end
-
     def redirect_to_root
       redirect_to events_path
+    end
+
+    def check_if_admin
+      redirect_to_root if !current_user.is_admin
     end
 end

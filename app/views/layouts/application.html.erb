@@ -57,6 +57,13 @@
               </div>
             <% end %>
           </li>
+          <% if current_user != nil %>
+            <% if current_user.is_admin %>
+              <li class="nav-item">
+                <%= link_to "Dashboard Admin", admin_index_path, class: "nav-link" %>
+              </li>
+            <% end %>
+          <% end %>
         </ul>
         <!-- <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

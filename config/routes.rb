@@ -8,6 +8,11 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update] do
   	resources :user_pics, only: [:create]
   end
-  resources :charges
+  namespace :admin do
+    resources :users
+    resources :events
+    resources :attendances
+  end
+  resources :admin, only: [:index]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

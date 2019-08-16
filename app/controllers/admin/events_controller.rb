@@ -1,7 +1,7 @@
-class EventsController < ApplicationController
+class Admin::EventsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :check_if_admin
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new]
-  before_action :redirect_to_root, if: :not_admin?, only: [:edit, :update, :destroy]
 
   # GET /events
   # GET /events.json
@@ -75,11 +75,12 @@ class EventsController < ApplicationController
       params.require(:event).permit(:start_date, :duration, :title, :description, :price, :location, :event_pic)
     end
 
-    def not_admin?
-      return @event.admin != current_user
-    end
-
     def redirect_to_root
       redirect_to events_path
     end
+
+    def check_if_admin
+      redirect_to_root if !current_user.is_admin
+    end
+
 end
