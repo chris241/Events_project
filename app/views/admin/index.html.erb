@@ -1,12 +1,18 @@
 
 <h1>Dashbord</h1>
 
-<table>
-
+<table class="table">
+  <thead>
+    <tr class="table-info">
+      <th>Page</th>
+    </tr>
+  </thead>
 
   <tbody>
     <tr>
       <td><%= link_to 'Users', admin_users_path %></td>
+    </tr>
+    <tr>
       <td><%= link_to 'Events', admin_events_path %></td>
     </tr>
 
