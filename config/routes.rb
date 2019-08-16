@@ -10,8 +10,10 @@ Rails.application.routes.draw do
   end
   namespace :admin do
     resources :users
-    resources :events
-    resources :attendances
+    resources :events do
+      resources :attendances
+    end
+    
   end
   resources :admin, only: [:index]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

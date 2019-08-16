@@ -1,4 +1,4 @@
-class AttendancesController < ApplicationController
+class Admin::AttendancesController < ApplicationController
 	before_action :set_event
 	before_action :redirect_to_root, if: :not_admin?, only: [:index]
 
@@ -42,6 +42,12 @@ class AttendancesController < ApplicationController
 		flash[:error] = e.message
 		redirect_to new_event_attendance_path(@event)
 	end
+
+	def destroy
+		@attendance = Attendance.find(params[:id])
+    @attendance.destroy
+    redirect_back(fallback_location: @event)
+  end
 
 
 	private

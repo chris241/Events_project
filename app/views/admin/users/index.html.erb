@@ -23,9 +23,9 @@
         <td><%= user.first_name %></td>
         <td><%= user.last_name %></td>
         <td><span class="bg-<% if user.is_admin %>success<% else %>danger<% end %> rounded-circle", style="height: 20px; width: 20px; display: inline-block;"></span></td>
-        <td><%= link_to 'Show', admin_user_path(user) %></td>
-        <td><%= link_to 'Edit', edit_admin_user_path(user) %></td>
-        <td><%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', admin_user_path(user), class:"btn btn-info" %></td>
+        <td><%= link_to 'Edit', edit_admin_user_path(user), class:"btn btn-primary" %></td>
+        <td><%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>

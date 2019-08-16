@@ -1,28 +1,89 @@
 
-<div class="jumbotron" style="background-image: url(https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?cs=srgb&dl=audience-band-concert-1105666.jpg&fm=jpg); background-size: 100%;">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-        <section class="card frame">
-          <div class="card-body">
+    <%= link_to 'Retour', admin_events_path %>
 
-            <%= render 'shared/event_detailled', event: @event %>
 
-            <% if @event.can_participate?(current_user) &&  !@event.is_free?%>
-              <p><%= link_to 'Je participe !', new_event_attendance_path(@event), class:"btn btn-success float-right mt-1" %></p>
-            <% end %>
-            <% if @event.can_participate?(current_user) &&  @event.is_free?%>
-              <p><%= link_to 'Je participe !', event_attendances_path(@event), method: :post, class:"btn btn-success float-right mt-1" %></p>
-            <% end %>
-            <% if @event.admin == current_user %>
-              <p><%= link_to 'mon espace événement', event_attendances_path(@event), class:"btn btn-primary float-right mt-1" %></p>
-            <% end %>
+<h1>Event n°<%= @event.id %></h1>
 
-            <%= link_to 'Retour', events_path %>
+<p>
+  <%if @event.event_pic.attached?%>
+    <%= image_tag @event.event_pic, alt: 'event_pic', class:"w-100", style:"height: 30vw; object-fit: cover;" %>
+  <%end%>
+</p>
 
-          </div>
-        </section>
-      </div>
-    </div>
+
+<%= link_to 'Edit', edit_admin_event_path(@event), class:"btn btn-primary" %> | 
+<%= link_to 'Destroy', admin_event_path(@event), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>
+
+<table class="table">
+  <tbody>
+
+      <tr>
+        <th scope="row" class="table-info">location</th>
+        <td><i class="fas fa-map-marker-alt text-warning"></i><%= @event.location %></td>
+      </tr>
+      <tr>
+        <th scope="row" class="table-info">start_date</th>
+        <td><%= @event.convert_start_date %></td>
+      </tr>
+      <tr>
+        <th scope="row" class="table-info">duration</th>
+        <td><%= @event.duration %></td>
+      </tr>
+      <tr>
+        <th scope="row" class="table-info">price</th>
+        <td><%= @event.price %></td>
+      </tr>
+      <tr>
+        <th scope="row" class="table-info">description</th>
+        <td><%= @event.description %></td>
+      </tr>
+      <tr>
+        <th scope="row" class="table-info">admin</th>
+        <td><%= link_to @event.admin.email, admin_user_path(@event.admin) %></td>
+      </tr>
+          
+ 
+  </tbody>
+</table>
+
+<br>
+
+<p><%= @event.participants.count %> personnes participent à cet évenement </p>
+
   </div>
-</div>
+
+<h1>Participants</h1>
+
+<table class="table">
+  <thead>
+    <tr class="table-info">
+      <th>id</th>
+      <th>Email</th>
+      <th>Description</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Admin?</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @event.participants.sort_by{ |user| user.email }.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.email %></td>
+        <td><%= user.description %></td>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td><span class="bg-<% if user.is_admin %>success<% else %>danger<% end %> rounded-circle", style="height: 20px; width: 20px; display: inline-block;"></span></td>
+        <td><%= link_to 'Show user', admin_user_path(user), class:"btn btn-info" %></td>
+        <td><%= link_to 'Edit user', edit_admin_user_path(user), class:"btn btn-primary" %></td>
+        <td><%= link_to 'Destroy user', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>
+        <td><%= link_to 'Destroy attendance', admin_event_attendance_path(@event, @event.attendances.find_by(participant: user)), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
