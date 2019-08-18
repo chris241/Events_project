@@ -1,0 +1,41 @@
+
+
+<div>
+  <div class="container">
+    <h1>Evenements à valider</h1>
+  </div>
+</div>
+
+
+<table class="table">
+  <thead>
+    <tr class="table-info">
+      <th>id</th>
+      <th>title</th>
+      <th>start_date</th>
+      <th>duration</th>
+      <th>price</th>
+      <th>location</th>
+      <th>admin</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.sort_by{ |event| event.start_date }.each do |event| %>
+      <tr>
+        <td><%= event.id %></td>
+        <td><%= event.title %></td>
+        <td><%= event.convert_start_date %></td>
+        <td><%= event.duration %></td>
+        <td><%= event.price %></td>
+        <td><%= event.location %></td>
+        <td><%= link_to event.admin.email, admin_user_path(event.admin) %></td>
+        
+
+        <td><%= link_to 'Show', admin_events_submission_path(event) %></td>
+       
+      </tr>
+    <% end %>
+  </tbody>
+</table>

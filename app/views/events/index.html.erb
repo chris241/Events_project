@@ -10,7 +10,7 @@
 
 <section class="card-events">
   <div class="row">
-    <% Event.all.sort_by{ |event| event.start_date }.each do |event| %>
+    <% @events.sort_by{ |event| event.start_date }.each do |event| %>
       <%= render 'shared/event-card', event: event %>
     <% end %>
   </div>

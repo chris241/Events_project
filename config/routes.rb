@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
   namespace :admin do
     resources :users
+    resources :events_submissions, only: [:show, :index, :update, :destroy]
     resources :events do
       resources :attendances
     end

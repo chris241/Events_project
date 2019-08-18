@@ -2,11 +2,14 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new]
   before_action :redirect_to_root, if: :not_admin?, only: [:edit, :update, :destroy]
+  before_action :redirect_to_root, if: :not_validated?, only: [:show]
+
 
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = Event.all.where(validated: true)
+
   end
 
   # GET /events/1
@@ -81,5 +84,9 @@ class EventsController < ApplicationController
 
     def redirect_to_root
       redirect_to events_path
+    end
+
+     def not_validated?
+      return !@event.validated
     end
 end
