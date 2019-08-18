@@ -12,21 +12,23 @@ class Admin::EventsSubmissionsController < ApplicationController
   end
 
   def update #to validate
-  	puts "$"*1000
   	@event.reviewed = true
   	@event.validated = true
-  	puts "ù"*1000
-  	puts @event.title
-  	@event.save
-  	puts "y"*1000
-  	redirect_to admin_events_submissions_path
+  	if @event.save
+  		redirect_to admin_events_submissions_path
+  	else
+  		render :show
+  	end
   end
 
   def destroy #to invalidate
   	@event.reviewed = true
   	@event.validated = false
-  	@event.save
-  	redirect_to admin_events_submissions_path
+  	if @event.save
+  		redirect_to admin_events_submissions_path
+  	else
+  		render :show
+  	end
   end
 
   private
